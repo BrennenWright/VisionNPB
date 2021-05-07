@@ -2744,7 +2744,7 @@ class VisionWebApi(object):
 
     def searchFilters(self, args):
         """ searchFilters :
-        Search for a specific port group in the system by certain properties.
+        Search for a specific filter in the system by certain properties.
         Sample usage:
         >>> nto.searchFilters({'mode' : 'PASS_BY_CRITERIA'})
         [{u'id': 463, u'name': u'Syn Attack'}, {u'id': 465, u'name': u'Too Much Overhead'}, {u'id': 466, u'name': u'F8'}, {u'id': 55, u'name': u'F4'}, {u'id': 460, u'name': u'TCP, UDP, HTTP'}, {u'id': 462, u'name': u'ARP Storm'}, {u'id': 461, u'name': u'Voice VLANs'}]
