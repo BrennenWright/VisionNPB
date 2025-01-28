@@ -38,11 +38,13 @@
 # SOFTWARE.
 #
 ################################################################################
-
 import requests
 import time
 from tabulate import tabulate
 import os
+
+# uncomment to suppress SSL warnings
+#requests.packages.urllib3.disable_warnings() 
 
 # Constants
 API_URL = "https://localhost:9000/api/ports/P"
@@ -97,7 +99,7 @@ def main():
             # Fetch data from the API
             response = fetch_port_status(auth_token,"01")
 
-            table = [["Port", "Link Status"]]
+            table = [["Port", "Duplex" ,"Link Up","Pause", "Speed"]]
             
             if response:
                 # Extract the X-auth-token from the first response
@@ -106,7 +108,7 @@ def main():
 
                 # Display the result
                 data = response.json()
-                table.append(["P01", data["link_status"]])
+                table.append(["P01",data["link_status"]["duplex"], data["link_status"]["link_up"], data["link_status"]["pause"], data["link_status"]["speed"]])
                 
             # Fetch data from the API
             response = fetch_port_status(auth_token,"02")
@@ -118,9 +120,10 @@ def main():
 
                 # Display the result
                 data = response.json()
-                table.append(["P02", data["link_status"]])
+                table.append(["P02",data["link_status"]["duplex"], data["link_status"]["link_up"], data["link_status"]["pause"], data["link_status"]["speed"]])
                 
 
+            print("[                    Link Status                    ]")
             print(tabulate(table, headers="firstrow", tablefmt="grid"))
 
 
